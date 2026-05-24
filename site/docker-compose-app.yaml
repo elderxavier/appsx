@@ -1,0 +1,22 @@
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: ./docker/app-dockerfile
+    image: appsx-site:latest
+    container_name: appsx-site
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - appsx-network
+    environment:
+      - TZ=America/Sao_Paulo
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - /var/www/certbot:/var/www/certbot:ro
+
+networks:
+  appsx-network:
+    external: true
