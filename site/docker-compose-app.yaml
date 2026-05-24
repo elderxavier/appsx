@@ -16,6 +16,8 @@ services:
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt:ro
       - /var/www/certbot:/var/www/certbot:ro
+      # Portfólio elderxavier.com.br servido pelo mesmo edge nginx
+      - /home/docker/elderxavier/wwww:/usr/share/nginx/elderxavier:ro
 
 networks:
   appsx-network:
