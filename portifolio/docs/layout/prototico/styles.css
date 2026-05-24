@@ -142,6 +142,7 @@ main { display: block; }
 
 .section__head {
   display: flex; align-items: baseline; gap: 16px;
+  flex-wrap: wrap;
   margin-bottom: 48px;
   border-bottom: 1px solid var(--border);
   padding-bottom: 16px;
@@ -153,6 +154,13 @@ main { display: block; }
 }
 .section__head h2 {
   margin: 0; font-size: clamp(24px, 3vw, 34px); font-weight: 700; letter-spacing: -0.02em;
+}
+.section__sub {
+  flex-basis: 100%;
+  margin: 8px 0 0;
+  color: var(--text-dim);
+  font-size: 15px;
+  max-width: 720px;
 }
 
 /* ---------- Hero ---------- */
@@ -479,4 +487,185 @@ main { display: block; }
   .hero__stats { grid-template-columns: 1fr 1fr; }
   .hero__cta .btn { flex: 1; }
   .timeline__card { padding: 18px; }
+  .xp-stats { grid-template-columns: 1fr 1fr; }
+  .xp-filters { gap: 6px; }
+  .xp-chip { padding: 6px 12px; font-size: 11px; }
+}
+
+/* =========================================================
+   Experiência profissional — v2
+   ========================================================= */
+
+/* KPI strip */
+.xp-stats {
+  list-style: none; padding: 0; margin: 0 0 36px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.xp-stats__item {
+  background: linear-gradient(160deg, var(--surface) 0%, var(--surface-2) 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  display: flex; flex-direction: column; gap: 4px;
+  transition: border-color .25s ease, transform .25s ease;
+}
+.xp-stats__item:hover { border-color: var(--violet-2); transform: translateY(-2px); }
+.xp-stats__value {
+  font-size: 30px; font-weight: 800; letter-spacing: -0.02em;
+  background: var(--grad-primary);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  line-height: 1.1;
+}
+.xp-stats__value small { font-size: 18px; }
+.xp-stats__label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Filter chips */
+.xp-filters {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin: 0 0 36px;
+  padding-bottom: 24px;
+  border-bottom: 1px dashed var(--border);
+}
+.xp-chip {
+  appearance: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-dim);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: color .2s ease, border-color .2s ease, background .2s ease, transform .15s ease;
+}
+.xp-chip:hover { color: var(--text); border-color: var(--border-strong); transform: translateY(-1px); }
+.xp-chip:focus-visible { outline: 2px solid var(--violet-2); outline-offset: 2px; }
+.xp-chip.is-active {
+  color: var(--bg);
+  background: var(--grad-primary);
+  border-color: transparent;
+  font-weight: 600;
+}
+
+/* Card refinements */
+.timeline__card { position: relative; }
+.timeline__card header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 12px;
+  row-gap: 2px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.timeline__card header h3 {
+  grid-column: 2;
+}
+.timeline__card header .company,
+.timeline__card header .period {
+  grid-column: 2;
+}
+.xp-icon {
+  grid-column: 1; grid-row: 1 / span 3;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: rgba(139, 92, 246, 0.10);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  color: var(--violet-2);
+  flex-shrink: 0;
+}
+.timeline__item--current .xp-icon {
+  background: rgba(34, 211, 238, 0.10);
+  border-color: rgba(34, 211, 238, 0.30);
+  color: var(--cyan-2);
+}
+.timeline__card .period strong {
+  color: var(--text);
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+/* "Atual" badge */
+.xp-badge {
+  position: absolute; top: 14px; right: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(34, 211, 238, 0.12);
+  color: var(--cyan-2);
+  border: 1px solid rgba(34, 211, 238, 0.35);
+}
+.xp-badge--current::before {
+  content: ""; display: inline-block;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--cyan-2);
+  margin-right: 6px;
+  box-shadow: 0 0 6px var(--cyan-2);
+  vertical-align: middle;
+  animation: xpBlink 1.8s ease-in-out infinite;
+}
+@keyframes xpBlink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+
+/* Current job card emphasis */
+.timeline__item--current .timeline__card {
+  border-color: rgba(34, 211, 238, 0.28);
+  background:
+    linear-gradient(160deg, rgba(34, 211, 238, 0.04) 0%, var(--surface-2) 70%);
+}
+
+/* Filter / collapse states */
+.timeline__item.is-hidden { display: none; }
+#xp-timeline .xp-legacy { display: none; }
+#xp-timeline.is-expanded .xp-legacy,
+#xp-timeline:not([data-filter="all"]) .xp-legacy { display: list-item; }
+#xp-timeline:not([data-filter="all"]) ~ .xp-toggle-wrap { display: none; }
+
+/* Toggle button */
+.xp-toggle-wrap {
+  display: flex; justify-content: center;
+  margin-top: 8px;
+}
+.xp-toggle {
+  appearance: none;
+  background: transparent;
+  border: 1px dashed var(--border-strong);
+  color: var(--text-dim);
+  border-radius: var(--radius);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  padding: 12px 22px;
+  cursor: pointer;
+  transition: color .2s ease, border-color .2s ease, background .2s ease;
+}
+.xp-toggle:hover { color: var(--text); border-color: var(--violet-2); background: rgba(139,92,246,0.06); }
+.xp-toggle:focus-visible { outline: 2px solid var(--violet-2); outline-offset: 2px; }
+.xp-toggle .xp-toggle__less { display: none; }
+.xp-toggle[aria-expanded="true"] .xp-toggle__more { display: none; }
+.xp-toggle[aria-expanded="true"] .xp-toggle__less { display: inline; }
+
+@media (max-width: 720px) {
+  .xp-stats { grid-template-columns: 1fr 1fr; }
+  .xp-stats__value { font-size: 24px; }
+  .timeline__card header { grid-template-columns: 1fr; }
+  .xp-icon { grid-row: auto; }
+  .xp-badge { position: static; display: inline-block; margin-bottom: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .xp-badge--current::before { animation: none; }
 }
