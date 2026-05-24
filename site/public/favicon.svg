@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="APPSX">
+  <rect width="64" height="64" rx="12" fill="#c8f24b"/>
+  <path d="M18 18 L46 46 M46 18 L18 46"
+        stroke="#0b0d10" stroke-width="8" stroke-linecap="round" fill="none"/>
+</svg>
