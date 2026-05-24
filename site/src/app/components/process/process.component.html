@@ -1,0 +1,19 @@
+<section id="processo" class="appsx-section">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">[ 02 ] PROCESSO</div>
+      <h2 class="section-title">Cinco etapas. Zero surpresas <em>desagradáveis</em>.</h2>
+    </div>
+
+    <div class="process-list">
+      @for (step of steps; track step.num) {
+        <div class="process-step">
+          <div class="process-num">{{ step.num }}</div>
+          <div class="process-name">{{ step.name }}</div>
+          <div class="process-desc">{{ step.description }}</div>
+          <div class="process-time">{{ step.duration }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,23 @@
+<section id="servicos" class="appsx-section">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">[ 01 ] SERVIÇOS</div>
+      <h2 class="section-title">Três frentes de engenharia. Uma única <em>obsessão</em> por qualidade.</h2>
+    </div>
+
+    <div class="services-grid">
+      @for (service of services; track service.title) {
+        <article class="service">
+          <div class="service-icon">{{ service.icon }}</div>
+          <h3>{{ service.title }}</h3>
+          <p>{{ service.description }}</p>
+          <div class="service-stack">
+            @for (tech of service.stack; track tech) {
+              <span>{{ tech }}</span>
+            }
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

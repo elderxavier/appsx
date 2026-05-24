@@ -1,0 +1,48 @@
+<footer class="appsx-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="word">apps</span><span class="x-mark" aria-hidden="true"></span>
+          <span class="logo-expand">apps <b>e</b>xperts</span>
+        </div>
+        <p>
+          APPSX <em style="color:var(--lime); font-style:normal;">/ˈæps.ɛks.pɜːrts/</em>
+          — especialistas em apps e sistemas sob demanda. Engenharia de software com ponto de vista.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h5>Empresa</h5>
+        <ul>
+          @for (link of empresa; track link.label) {
+            <li><a [href]="link.href">{{ link.label }}</a></li>
+          }
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Serviços</h5>
+        <ul>
+          @for (link of servicos; track link.label) {
+            <li><a [href]="link.href">{{ link.label }}</a></li>
+          }
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Contato</h5>
+        <ul>
+          @for (link of contato; track link.label) {
+            <li><a [href]="link.href">{{ link.label }}</a></li>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© {{ year }} APPSX TECNOLOGIA LTDA · CNPJ 00.000.000/0001-00</span>
+      <span>Privacidade · LGPD · Termos</span>
+    </div>
+  </div>
+</footer>

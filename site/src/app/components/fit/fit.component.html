@@ -1,0 +1,28 @@
+<section id="sobre" class="appsx-section">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">[ 05 ] FIT</div>
+      <h2 class="section-title">Para quem somos — e para quem <em>não</em> somos.</h2>
+    </div>
+
+    <div class="fit-grid">
+      <div class="fit-col yes">
+        <h4>É um bom fit se você</h4>
+        <ul class="fit-list">
+          @for (item of goodFit; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      </div>
+
+      <div class="fit-col no">
+        <h4>Não é um bom fit se você</h4>
+        <ul class="fit-list">
+          @for (item of badFit; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

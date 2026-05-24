@@ -1,0 +1,11 @@
+<div class="marquee">
+  <div class="marquee-track">
+    @for (loop of [0, 1]; track loop) {
+      <span>
+        @for (item of items; track item) {
+          {{ item }} <span class="x-bullet" aria-hidden="true"></span>
+        }
+      </span>
+    }
+  </div>
+</div>

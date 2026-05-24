@@ -1,0 +1,25 @@
+<section id="modelos" class="appsx-section">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">[ 04 ] MODELOS</div>
+      <h2 class="section-title">Três formas de trabalhar <em>juntos</em>. Escolha a sua.</h2>
+    </div>
+
+    <div class="models-grid">
+      @for (model of models; track model.title) {
+        <div class="model" [class.featured]="model.featured">
+          @if (model.badge) {
+            <span class="model-badge">{{ model.badge }}</span>
+          }
+          <h3>{{ model.title }}</h3>
+          <p class="model-desc">{{ model.description }}</p>
+          <ul>
+            @for (feature of model.features; track feature) {
+              <li>{{ feature }}</li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
+</section>

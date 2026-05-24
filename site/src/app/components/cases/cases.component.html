@@ -1,0 +1,20 @@
+<section id="cases" class="appsx-section">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">[ 03 ] CASES</div>
+      <h2 class="section-title">Software que <em>movimenta</em> bilhões em operações reais.</h2>
+    </div>
+
+    <div class="cases-grid">
+      @for (item of cases; track item.title) {
+        <article class="case">
+          <span class="case-tag">{{ item.tag }}</span>
+          <h3>{{ item.title }}</h3>
+          <div class="case-metric">{{ item.metric }}</div>
+          <div class="case-metric-label">{{ item.label }}</div>
+          <div class="case-arrow">Ler case completo →</div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
