@@ -1,0 +1,166 @@
+/*
+Theme Name:   APPSX (Twenty Twenty-Four Child)
+Theme URI:    https://appsx.com.br/
+Description:  Child theme do Twenty Twenty-Four com a paleta e tipografia oficiais do site appsx.com.br (preto profundo, lime #c8f24b, fontes Syne / DM Sans / JetBrains Mono).
+Author:       APPSX
+Author URI:   https://appsx.com.br/
+Template:     twentytwentyfour
+Version:      1.0.0
+Requires at least: 6.4
+Requires PHP: 8.0
+License:      GPL-2.0-or-later
+License URI:  https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:  appsx-twentytwentyfour-child
+*/
+
+/* ─────────────────────────────────────────────────────────────
+   APPSX — paleta global (mesma do site institucional)
+   ───────────────────────────────────────────────────────────── */
+:root {
+  --appsx-bg:          #0b0d10;
+  --appsx-bg-2:        #111418;
+  --appsx-bg-3:        #181c22;
+  --appsx-surface:     #1a1e24;
+  --appsx-ink:         #f5f4ef;
+  --appsx-ink-dim:     #9da3ad;
+  --appsx-ink-faint:   #5c626c;
+  --appsx-line:        rgba(245,244,239,0.10);
+  --appsx-line-strong: rgba(245,244,239,0.28);
+  --appsx-accent:      #5b8cff;
+  --appsx-accent-hot:  #3d6dff;
+  --appsx-lime:        #c8f24b;
+  --appsx-hot:         #ff5a3c;
+}
+
+/* Background global + textura sutil (mesmo efeito do site) */
+body {
+  background: var(--appsx-bg) !important;
+  color: var(--appsx-ink);
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 0%,  rgba(91,140,255,0.10), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 90% 30%, rgba(200,242,75,0.04), transparent 70%),
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(91,140,255,0.06), transparent 60%);
+}
+
+/* Cabeçalhos: tipografia display do site */
+h1, h2, h3, h4, h5, h6,
+.wp-block-post-title,
+.wp-block-site-title,
+.wp-block-heading {
+  font-family: 'Syne', system-ui, sans-serif !important;
+  letter-spacing: -0.03em;
+  color: var(--appsx-ink);
+}
+
+/* Corpo */
+body, p, li, .wp-block-paragraph {
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+/* Mono */
+code, pre, kbd, .wp-block-code, .wp-block-preformatted {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  background: var(--appsx-bg-2);
+  color: var(--appsx-lime);
+  border: 1px solid var(--appsx-line);
+  border-radius: 4px;
+}
+
+/* Links */
+a { color: var(--appsx-lime); transition: color .2s; }
+a:hover { color: var(--appsx-ink); }
+
+/* Botões (blocos Gutenberg) */
+.wp-block-button__link {
+  background: var(--appsx-lime) !important;
+  color: var(--appsx-bg) !important;
+  border-radius: 100px !important;
+  font-weight: 500;
+  border: 1px solid var(--appsx-lime);
+  transition: all .25s;
+}
+.wp-block-button__link:hover {
+  background: var(--appsx-ink) !important;
+  color: var(--appsx-bg) !important;
+  border-color: var(--appsx-ink);
+  transform: translateY(-2px);
+}
+.wp-block-button.is-style-outline .wp-block-button__link {
+  background: transparent !important;
+  color: var(--appsx-ink) !important;
+  border: 1px solid var(--appsx-line-strong) !important;
+}
+
+/* Citações */
+.wp-block-quote, blockquote {
+  border-left: 3px solid var(--appsx-lime);
+  background: var(--appsx-bg-2);
+  color: var(--appsx-ink);
+  padding: 1rem 1.4rem;
+}
+
+/* Separadores / linhas */
+hr, .wp-block-separator {
+  border-color: var(--appsx-line) !important;
+  background: var(--appsx-line) !important;
+}
+
+/* Inputs / formulários */
+input[type="text"],
+input[type="email"],
+input[type="search"],
+input[type="url"],
+input[type="password"],
+textarea,
+select,
+.wp-block-search__input {
+  background: var(--appsx-bg-2);
+  color: var(--appsx-ink);
+  border: 1px solid var(--appsx-line-strong);
+  border-radius: 4px;
+}
+input::placeholder, textarea::placeholder { color: var(--appsx-ink-faint); }
+
+/* Tabelas */
+table, .wp-block-table table {
+  background: var(--appsx-bg-2);
+  color: var(--appsx-ink);
+  border-color: var(--appsx-line);
+}
+table th { background: var(--appsx-bg-3); color: var(--appsx-lime); }
+
+/* Imagens com leve borda do tema escuro */
+img { border-radius: 4px; }
+
+/* Header e footer do TT4 */
+.wp-block-template-part header,
+.wp-block-template-part footer,
+header.wp-block-template-part,
+footer.wp-block-template-part {
+  background: var(--appsx-bg) !important;
+  border-bottom: 1px solid var(--appsx-line);
+}
+footer.wp-block-template-part {
+  border-top: 1px solid var(--appsx-line);
+  border-bottom: none;
+  color: var(--appsx-ink-dim);
+}
+
+/* Navegação */
+.wp-block-navigation a { color: var(--appsx-ink-dim) !important; }
+.wp-block-navigation a:hover { color: var(--appsx-ink) !important; }
+
+/* Cartões / containers */
+.wp-block-group.has-background,
+.wp-block-cover {
+  background-color: var(--appsx-bg-2) !important;
+  border-radius: 6px;
+}
