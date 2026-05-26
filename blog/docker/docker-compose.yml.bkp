@@ -14,18 +14,12 @@ services:
       - db_data:/var/lib/mysql
     networks:
       - blog-net
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-prootpass"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
 
   wordpress:
     image: wordpress:6.5-php8.2-fpm
     container_name: blog-wordpress
     depends_on:
-      db:
-        condition: service_healthy
+      - db
     restart: unless-stopped
     environment:
       WORDPRESS_DB_HOST: db:3306
@@ -33,7 +27,6 @@ services:
       WORDPRESS_DB_PASSWORD: wordpresspass
       WORDPRESS_DB_NAME: wordpress
     volumes:
-      - wp_html:/var/www/html
       - ./wp-content:/var/www/html/wp-content
       - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
     networks:
@@ -45,26 +38,19 @@ services:
     depends_on:
       - wordpress
     restart: unless-stopped
-    # Apenas HTTP — TLS é terminado pelo edge nginx (appsx-site)
-    # via proxy_pass http://blog-nginx:80 na rede appsx-network.
-    expose:
-      - "80"
+    ports:
+      - "8081:80"
+      - "8443:443"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - wp_html:/var/www/html:ro
       - ./wp-content:/var/www/html/wp-content:ro
+      - ./certs:/etc/nginx/certs:ro
     networks:
       - blog-net
-      - appsx-network
 
 volumes:
   db_data:
-    name: blog_mysql_data
-  wp_html:
-    name: blog_wp_html
 
 networks:
   blog-net:
     driver: bridge
-  appsx-network:
-    external: true
